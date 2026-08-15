@@ -17,19 +17,20 @@ public class MachineServiceImpl<T extends Machine>
     private TruckProducer truckProducer = new TruckProducer();
 
     @Override
-    public List<T> get() {
-        return List.of();
-    }
-
-    @Override
-    public List<T> getAll(Class type) {
+    public List<T> getAll(Class<? extends T> type) {
         if (type == Bulldozer.class) {
-            return (List<T>) bulldozerProducer.get();
-        } else if (type == Excavator.class) {
-            return (List<T>) excavatorProducer.get();
-        } else if (type == Truck.class) {
-            return (List<T>) truckProducer.get();
+            List<? extends Machine> machines = bulldozerProducer.get();
+            return (List<T>) new ArrayList<>(machines);
         }
+        if (type == Excavator.class) {
+            List<? extends Machine> machines = excavatorProducer.get();
+            return (List<T>) new ArrayList<>(machines);
+        }
+        if (type == Truck.class) {
+            List<? extends Machine> machines = truckProducer.get();
+            return (List<T>) new ArrayList<>(machines);
+        }
+
         return new ArrayList<>();
     }
 

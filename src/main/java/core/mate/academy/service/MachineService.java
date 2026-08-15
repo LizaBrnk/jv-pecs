@@ -7,8 +7,6 @@ import java.util.List;
  * Parameterize this service and add its implementation in a separate class.
  */
 public interface MachineService<T extends Machine> {
-    List<T> get();
-
     /**
      * Return the list of machines.
 
@@ -19,7 +17,7 @@ public interface MachineService<T extends Machine> {
      * @param type - any class of Machine sub class. For example: Truck.class or Bulldozer.class
      * @return the list of machines
      */
-    List<T> getAll(Class type);
+    List<T> getAll(Class<? extends T> type);
 
     /**
     * Fill the machines list with passed value
