@@ -11,7 +11,7 @@ import java.util.List;
  * Your implementation of MachineService.
  */
 public class MachineServiceImpl<T extends Machine>
-        implements MachineService<T>, MachineProducer<T> {
+        implements MachineService<T> {
     private BulldozerProducer bulldozerProducer = new BulldozerProducer();
     private ExcavatorProducer excavatorProducer = new ExcavatorProducer();
     private TruckProducer truckProducer = new TruckProducer();
@@ -41,8 +41,8 @@ public class MachineServiceImpl<T extends Machine>
     }
 
     @Override
-    public void startWorking(List<? extends T> machines) {
-        for (T machine : machines) {
+    public void startWorking(List<? extends Machine> machines) {
+        for (Machine machine : machines) {
             machine.doWork();
         }
     }
